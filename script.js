@@ -8,6 +8,7 @@ const left_indi_button = document.getElementById("lindicator");
 const right_indi_btn = document.getElementById("rindicator");
 const circle = document.getElementsByClassName("innerclass")[0];
 const circle2 = document.getElementsByClassName("innerclass")[1];
+const brklight = document.getElementsByClassName("brk");
 
 let isBlinking = false;
 let intervalId;
@@ -83,6 +84,17 @@ buttonbrk.addEventListener("mouseover", () => {
         } else {
             count = 0;
         }
+        if (isBlinking) {
+            clearInterval(intervalId);
+            brklight.classList.remove("blink");
+            isBlinking = false;
+        } else {
+            brklight.classList.remove("blink");
+            intervalId = setInterval(() => {
+               //
+            }, 1000);
+            isBlinking = true;
+        }
         countDisplay.textContent = `${count}km`;
         updateGear(count)
     }, 1000)
@@ -102,7 +114,7 @@ setInterval(() => {
     else if (gear === "3rd") range = 7*fuel;
     else if (gear === "4th") range = 13*fuel;
     else if (gear === "5th") range = 15*fuel;
-    rangedisplay.textContent = `range: ${range} kmpl`;
+    rangedisplay.textContent = `range: ${range} km`;
 }, 3000)  
 
 //indicator
@@ -180,8 +192,13 @@ wheel2.addEventListener("click",()=>{
         }
 })
 
+//audio 
+const audio = document.getElementById('myAudio');
+const playbutton = document.getElementById('playButton');
 
-
+playbutton.addEventListener('click',()=>{
+    audio.play();
+});
 
 // battery-car nhi chle 
 // tyre -25 psi thi ochu- give alert  front 
@@ -191,3 +208,5 @@ wheel2.addEventListener("click",()=>{
 
 // 1 press button on sound
 // red light click on break 
+
+// mode 

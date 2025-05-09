@@ -8,12 +8,13 @@
 </head>
 <body>
     <div class="container">
-        <div>
+        <div class="main">
             <p>Speed: <span id="clickCount">0km</span></p>
             <p>Gair: <span id="gair">0</span></p>
-            <p id="range">Range: 0 kmpl</p>
+            <p id="range">Range: 0 km</p>
             <p id="fuel">Fuel : 10L</p>
         </div>
+        <!-- <div id="rpm">Rpm</div> -->
         <select id="option">
             <option value="driving">Driving</option>
             <option value="neutral">Neutral</option>
@@ -22,10 +23,13 @@
         <div>
             <button id="brkBtn">Break</button>
             <button id="myBtn">Lever</button>
+            <audio src="music.mp3" id="myAudio"></audio>
+            <button id="playButton">1</button>
         </div>
         <div class="circle">
             <span class="innerclass"></span>
             <span class="innerclass"></span>
+            <span class="brk"></span>
         </div>
         <div>
             <button id="lindicator">Left</button>
