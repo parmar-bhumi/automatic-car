@@ -8,9 +8,7 @@ const left_indi_button = document.getElementById("lindicator");
 const right_indi_btn = document.getElementById("rindicator");
 const circle = document.getElementsByClassName("innerclass")[0];
 const circle2 = document.getElementsByClassName("innerclass")[1];
-const pressure = document.getElementById("psure")
-const stringbtnleft = document.getElementById("sbtnleft")
-const stringbtnright = document.getElementById("sbtnright")
+
 let isBlinking = false;
 let intervalId;
 
@@ -54,13 +52,12 @@ function updateGear(speed) {
 
 //speed 
 const button = document.getElementById("myBtn");
+
 let interval;
 let count = 0;
 
 button.addEventListener("mouseover", () => {
-    if (options.value === "neutral") {
-        buttonbrk.removeEventListener("click",null);
-    }
+    if (options.value === "neutral")  return;
     interval = setInterval(() => {
         if (count < 200) {
             count++;
@@ -108,6 +105,7 @@ setInterval(() => {
     rangedisplay.textContent = `range: ${range} kmpl`;
 }, 3000)  
 
+//indicator
 left_indi_button.addEventListener("click", function () {
     if (isBlinking) {
         clearInterval(intervalId);
@@ -122,35 +120,68 @@ left_indi_button.addEventListener("click", function () {
     }
 });
 
-right_indi_btn.addEventListener("click",()=> {
+right_indi_btn.addEventListener("click",function() {
     if (isBlinking) {
         clearInterval(intervalId);
         circle2.classList.remove("blink");
         isBlinking = false;
     } else {
         circle2.classList.add("blink");
-        setTimeout(()=>{
-            isBlinking = true;
-        },4000)
+        intervalId = setInterval(() => {
+            //
+         }, 1000);
+         isBlinking = true;
     }
 });
 
+// stering 
+const stringbtnleft = document.getElementById("sbtnleft");
+const stringbtnright = document.getElementById("sbtnright");
+
 stringbtnleft.addEventListener("mouseover",function (){
-    if (isBlinking) {
-        circle.classList.remove('blink');
-        circle2.classList.remove('blink');
-    }
+    setTimeout(() => {
+        if (isBlinking) {
+            circle.classList.remove('blink');
+            // circle2.classList.remove('blink');
+        }
+    }, 2000);
 })
 
-stringbtnright.addEventListener("mouseover",()=>{
-    if (isBlinking) {
-        circle2.classList.remove('blink');
-    }
+stringbtnright.addEventListener("mouseover",function(){
+    setTimeout(()=>{
+        if (isBlinking) {
+            circle2.classList.remove('blink');
+        }
+    },2000)
 })
 
-// 2 var left right -indicator
-// 2 circle -blink
-// 2 stering -left right - 4sec thi vdhare hoy to off kri devanu
+//wheel 
+const wheel = document.getElementById("wheel");
+const psi = document.getElementById("psure");
+
+wheel.addEventListener("click",()=>{
+        if (count > 25) { 
+            alert("psi exceded...");
+        }else{
+            count++;
+            psi.textContent = `Pressure w-1 & 2 - ${count}`;
+        }
+})
+
+const wheel2 = document.getElementById("wheel2");
+const psi2 = document.getElementById("psure2");
+
+wheel2.addEventListener("click",()=>{
+        if (count >= 35) { 
+            alert("pressure exceded...")
+        }else{
+            count++;
+            psi2.textContent = `Pressure w-1 & 2 - ${count}`;
+        }
+})
+
+
+
 
 // battery-car nhi chle 
 // tyre -25 psi thi ochu- give alert  front 

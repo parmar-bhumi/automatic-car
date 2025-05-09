@@ -64,7 +64,7 @@ button:hover {
 .innerclass {
     height: 20px;
     width: 25px;
-    background-color: aquamarine;
+    background-color: yellow;
     border-radius: 20px;
 }
 
@@ -82,6 +82,7 @@ button:hover {
 .tyre{
     display: flex;
     gap: 15px;
+    cursor: pointer;
 }
 
 #wheel{
@@ -89,4 +90,19 @@ button:hover {
     background-color: salmon;
     border-radius: 20px;
     padding: 4px;
+}
+
+#wheel2{
+    border: 1px groove salmon;
+    background-color: salmon;
+    border-radius: 20px;
+    padding: 4px;
+}
+
+#psure{
+    margin-left: 3rem;
+}
+
+#psure2{
+    margin-left: 3rem;
 }
