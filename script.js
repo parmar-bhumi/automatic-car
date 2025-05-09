@@ -188,3 +188,6 @@ wheel2.addEventListener("click",()=>{
 //     -35 psi thi ochu- give alert rear wheel pressure 
 // seat belt on airbag on 
 // sensor-5sec thi vdhare car accident open airbag 
+
+// 1 press button on sound
+// red light click on break 
