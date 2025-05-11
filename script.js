@@ -8,26 +8,19 @@ const left_indi_button = document.getElementById("lindicator");
 const right_indi_btn = document.getElementById("rindicator");
 const circle = document.getElementsByClassName("innerclass")[0];
 const circle2 = document.getElementsByClassName("innerclass")[1];
-const brklight = document.getElementsByClassName("brk");
+const brklight = document.getElementsByClassName("brk")[0];
 
 let isBlinking = false;
 let intervalId;
 
+//drop-down
 options.addEventListener("change", () => {
     if (options.value === "neutral") {
         count = 0;
-        countDisplay.textContent = count;
-        updateGear(count)
     }
-    if (options.value === "reverse") {
-        if (count >= 5) {
-            count -= 5;
-        } else {
-            count = 0;
-        }
-        countDisplay.textContent = count;
-        updateGear(count)
-    }
+    countDisplay.textContent = count;
+    updateGear(count);
+
     if (options.value === "driving")
         document.getElementById("option").querySelector('[value="reverse"]').disabled = true;
     else {
@@ -58,7 +51,7 @@ let interval;
 let count = 0;
 
 button.addEventListener("mouseover", () => {
-    if (options.value === "neutral")  return;
+    if (options.value === "neutral") return;
     interval = setInterval(() => {
         if (count < 200) {
             count++;
@@ -74,6 +67,7 @@ button.addEventListener('mouseout', () => {
 
 //break button
 buttonbrk.addEventListener("mouseover", () => {
+    brklight.style.backgroundColor = "red";
     interval = setInterval(() => {
         if (options.value === "neutral") {
             buttonbrk.removeEventListener("click");
@@ -84,17 +78,6 @@ buttonbrk.addEventListener("mouseover", () => {
         } else {
             count = 0;
         }
-        if (isBlinking) {
-            clearInterval(intervalId);
-            brklight.classList.remove("blink");
-            isBlinking = false;
-        } else {
-            brklight.classList.remove("blink");
-            intervalId = setInterval(() => {
-               //
-            }, 1000);
-            isBlinking = true;
-        }
         countDisplay.textContent = `${count}km`;
         updateGear(count)
     }, 1000)
@@ -102,20 +85,21 @@ buttonbrk.addEventListener("mouseover", () => {
 
 buttonbrk.addEventListener('mouseout', () => {
     clearInterval(interval);
+    brklight.style.backgroundColor = "white";
 });
 
 //range
 setInterval(() => {
     const gear = gearDisplay.textContent;
-    let range=0;
+    let range = 0;
     let fuel = 10;
-    if (gear === "1st")  range = 3*fuel;
-    else if (gear === "2nd") range = 5*fuel;
-    else if (gear === "3rd") range = 7*fuel;
-    else if (gear === "4th") range = 13*fuel;
-    else if (gear === "5th") range = 15*fuel;
+    if (gear === "1st") range = 3 * fuel;
+    else if (gear === "2nd") range = 5 * fuel;
+    else if (gear === "3rd") range = 7 * fuel;
+    else if (gear === "4th") range = 13 * fuel;
+    else if (gear === "5th") range = 15 * fuel;
     rangedisplay.textContent = `range: ${range} km`;
-}, 3000)  
+}, 3000)
 
 //indicator
 left_indi_button.addEventListener("click", function () {
@@ -126,13 +110,13 @@ left_indi_button.addEventListener("click", function () {
     } else {
         circle.classList.add("blink");
         intervalId = setInterval(() => {
-           //
+            //
         }, 1000);
         isBlinking = true;
     }
 });
 
-right_indi_btn.addEventListener("click",function() {
+right_indi_btn.addEventListener("click", function () {
     if (isBlinking) {
         clearInterval(intervalId);
         circle2.classList.remove("blink");
@@ -141,8 +125,8 @@ right_indi_btn.addEventListener("click",function() {
         circle2.classList.add("blink");
         intervalId = setInterval(() => {
             //
-         }, 1000);
-         isBlinking = true;
+        }, 1000);
+        isBlinking = true;
     }
 });
 
@@ -150,7 +134,7 @@ right_indi_btn.addEventListener("click",function() {
 const stringbtnleft = document.getElementById("sbtnleft");
 const stringbtnright = document.getElementById("sbtnright");
 
-stringbtnleft.addEventListener("mouseover",function (){
+stringbtnleft.addEventListener("mouseover", function () {
     setTimeout(() => {
         if (isBlinking) {
             circle.classList.remove('blink');
@@ -159,46 +143,70 @@ stringbtnleft.addEventListener("mouseover",function (){
     }, 2000);
 })
 
-stringbtnright.addEventListener("mouseover",function(){
-    setTimeout(()=>{
+stringbtnright.addEventListener("mouseover", function () {
+    setTimeout(() => {
         if (isBlinking) {
             circle2.classList.remove('blink');
         }
-    },2000)
+    }, 2000)
 })
 
 //wheel 
 const wheel = document.getElementById("wheel");
 const psi = document.getElementById("psure");
 
-wheel.addEventListener("click",()=>{
-        if (count > 25) { 
-            alert("psi exceded...");
-        }else{
-            count++;
-            psi.textContent = `Pressure w-1 & 2 - ${count}`;
-        }
+wheel.addEventListener("click", () => {
+    if (count > 25) {
+        alert("psi exceded...");
+    } else {
+        count++;
+        psi.textContent = `Pressure w-1 & 2 - ${count}`;
+    }
 })
 
 const wheel2 = document.getElementById("wheel2");
 const psi2 = document.getElementById("psure2");
 
-wheel2.addEventListener("click",()=>{
-        if (count >= 35) { 
-            alert("pressure exceded...")
-        }else{
-            count++;
-            psi2.textContent = `Pressure w-1 & 2 - ${count}`;
-        }
+wheel2.addEventListener("click", () => {
+    if (count >= 35) {
+        alert("pressure exceded...")
+    } else {
+        count++;
+        psi2.textContent = `Pressure w-1 & 2 - ${count}`;
+    }
 })
 
 //audio 
 const audio = document.getElementById('myAudio');
 const playbutton = document.getElementById('playButton');
 
-playbutton.addEventListener('click',()=>{
+playbutton.addEventListener('click', () => {
     audio.play();
 });
+
+//sitbelt and airbag
+const mybtn = document.querySelector(".sitbelt");
+const airbag = document.querySelector(".airbag");
+
+function btncolor() {
+    if (mybtn.style.backgroundColor == "salmon") {
+        mybtn.style.backgroundColor = "white";
+        airbag.style.backgroundColor = "white";
+    }else {
+        mybtn.style.backgroundColor = "salmon";
+    }
+}
+
+mybtn.addEventListener('click', btncolor);
+
+airbag.addEventListener('click',()=>{
+    if (mybtn.style.backgroundColor == "salmon") {
+        airbag.style.backgroundColor = airbag.style.backgroundColor == "green" ? "white" : "green";
+    } 
+})
+
+
+
 
 // battery-car nhi chle 
 // tyre -25 psi thi ochu- give alert  front 
@@ -206,7 +214,6 @@ playbutton.addEventListener('click',()=>{
 // seat belt on airbag on 
 // sensor-5sec thi vdhare car accident open airbag 
 
-// 1 press button on sound
 // red light click on break 
 
 // mode 
