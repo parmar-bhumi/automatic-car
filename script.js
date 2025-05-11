@@ -205,15 +205,28 @@ airbag.addEventListener('click',()=>{
     } 
 })
 
+const mode = document.getElementById("mode2")
+let avg;
+let mod;
+if (avg = 6) {
+    mod = avg / 2;
+    mode.textContent = `Mode 4/4 :  ${mod}`;
+}
 
-
+// const gear = gearDisplay.textContent;
+//     let range = 0;
+//     let fuel = 10;
+//     if (gear === "1st") range = 3 * fuel;
+//     else if (gear === "2nd") range = 5 * fuel;
+//     else if (gear === "3rd") range = 7 * fuel;
+//     else if (gear === "4th") range = 13 * fuel;
+//     else if (gear === "5th") range = 15 * fuel;
+//     rangedisplay.textContent = `range: ${range} km`;
+// }, 3000)
 
 // battery-car nhi chle 
 // tyre -25 psi thi ochu- give alert  front 
 //     -35 psi thi ochu- give alert rear wheel pressure 
 // seat belt on airbag on 
 // sensor-5sec thi vdhare car accident open airbag 
-
-// red light click on break 
-
 // mode 
