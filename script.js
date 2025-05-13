@@ -135,12 +135,12 @@ right_indi_btn.addEventListener("click", function () {
 const light = document.getElementById("hazard");
 light.addEventListener("click",()=>{
     if (!isBlinking) {  
-        circle.classList.add('blinking');
-        circle2.classList.add('blinking');
+        circle.classList.add('blink');
+        circle2.classList.add('blink');
         isBlinking = true;
     }else{
-        circle.classList.remove('blinking');
-        circle2.classList.remove('blinking');
+        circle.classList.remove('blink');
+        circle2.classList.remove('blink');
         isBlinking = false;
     }
 })
@@ -229,6 +229,10 @@ if (avg = 6) {
     mode.textContent = `Mode 4/4 :  ${mod}`;
 }
 
+
+// rear-27 to 33 hoi tyare +1 , 33 thi vadhe toh alart aapvanu, 25 thi niche 3 thi avg ghate
+
+// Front mate--> 23 to 27 hoi to +1 karvanu average ma , 27 thi upar hoi toh alart aapvanu  , ane 23 thi niche hoi to 3 thi avg ghate
 
 
 // battery-car nhi chle 
