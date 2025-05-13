@@ -140,3 +140,12 @@ button:hover {
     background-color: red;
     font-weight: bold;
 }
+
+#avg{
+    border: 1px solid gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 5px;
+}

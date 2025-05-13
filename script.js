@@ -166,31 +166,6 @@ stringbtnright.addEventListener("mouseover", function () {
     }, 2000)
 })
 
-//wheel 
-const wheel = document.getElementById("wheel");
-const psi = document.getElementById("psure");
-
-wheel.addEventListener("click", () => {
-    if (count > 25) {
-        alert("psi exceded...");
-    } else {
-        count++;
-        psi.textContent = `Pressure w-1 & 2 - ${count}`;
-    }
-})
-
-const wheel2 = document.getElementById("wheel2");
-const psi2 = document.getElementById("psure2");
-
-wheel2.addEventListener("click", () => {
-    if (count >= 35) {
-        alert("pressure exceded...")
-    } else {
-        count++;
-        psi2.textContent = `Pressure w-1 & 2 - ${count}`;
-    }
-})
-
 //audio 
 const audio = document.getElementById('myAudio');
 const playbutton = document.getElementById('playButton');
@@ -229,15 +204,40 @@ if (avg = 6) {
     mode.textContent = `Mode 4/4 :  ${mod}`;
 }
 
+//wheel 
+const wheel = document.getElementById("wheel");
+const psi = document.getElementById("psure");
+const average = document.getElementById("avg");
+
+wheel.addEventListener("click", () => {
+    if (count > 25) {
+        alert("psi exceded...");
+        // avg = average.textContent = 
+    }
+    else if (count < 23) {
+        
+    } else {
+        count++;
+        psi.textContent = `Pressure w-1 & 2 - ${count}`;
+    }
+})
+
+const wheel2 = document.getElementById("wheel2");
+const psi2 = document.getElementById("psure2");
+
+let num =0;
+wheel2.addEventListener("click", () => { 
+        if (count >= 27 &&  count<= 33) {
+            avg = average.textContent = num++; }
+        else if (count >=33) {
+            alert("presuure is increases")  
+        } else {
+            count++;
+            psi2.textContent = `Pressure w-1 & 2 - ${count}`; 
+        }
+})
+
 
 // rear-27 to 33 hoi tyare +1 , 33 thi vadhe toh alart aapvanu, 25 thi niche 3 thi avg ghate
 
 // Front mate--> 23 to 27 hoi to +1 karvanu average ma , 27 thi upar hoi toh alart aapvanu  , ane 23 thi niche hoi to 3 thi avg ghate
-
-
-// battery-car nhi chle 
-// tyre -25 psi thi ochu- give alert  front 
-//     -35 psi thi ochu- give alert rear wheel pressure 
-// seat belt on airbag on 
-// sensor-5sec thi vdhare car accident open airbag 
-// mode 
