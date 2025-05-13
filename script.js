@@ -131,6 +131,20 @@ right_indi_btn.addEventListener("click", function () {
     }
 });
 
+//hazard light
+const light = document.getElementById("hazard");
+light.addEventListener("click",()=>{
+    if (!isBlinking) {  
+        circle.classList.add('blinking');
+        circle2.classList.add('blinking');
+        isBlinking = true;
+    }else{
+        circle.classList.remove('blinking');
+        circle2.classList.remove('blinking');
+        isBlinking = false;
+    }
+})
+
 // stering 
 const stringbtnleft = document.getElementById("sbtnleft");
 const stringbtnright = document.getElementById("sbtnright");
@@ -206,6 +220,7 @@ airbag.addEventListener('click',()=>{
     } 
 })
 
+//mode
 const mode = document.getElementById("mode2")
 let avg;
 let mod;

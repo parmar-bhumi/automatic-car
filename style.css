@@ -135,3 +135,18 @@ button:hover {
     border-radius: 5px;
     margin: 0 10px;
 }          
+
+#hazard{
+    background-color: red;
+    font-weight: bold;
+}
+
+.blinking{
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker{
+    50% {
+        opacity: 0;
+    }
+}
