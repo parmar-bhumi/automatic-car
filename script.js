@@ -1,6 +1,6 @@
 const gearDisplay = document.getElementById("gair")
 const buttonbrk = document.getElementById("brkBtn");
-const options = document.getElementById("option")
+const options = document.getElementById("option");
 const countDisplay = document.getElementById("clickCount");
 const rangedisplay = document.getElementById("range");
 const fueldsply = document.getElementById("fuel");
@@ -9,6 +9,7 @@ const right_indi_btn = document.getElementById("rindicator");
 const circle = document.getElementsByClassName("innerclass")[0];
 const circle2 = document.getElementsByClassName("innerclass")[1];
 const brklight = document.getElementsByClassName("brk")[0];
+const mode2 = document.getElementById("mode");
 
 let isBlinking = false;
 let intervalId;
@@ -23,6 +24,13 @@ function myfunction() {
     }
 }
 
+function battery() {
+    const battery = document.getElementById("battery").value;
+    if (battery >= 24) {
+        
+    }
+}
+
 //drop-down
 options.addEventListener("change", () => {
     if (options.value === "neutral") {
@@ -30,12 +38,6 @@ options.addEventListener("change", () => {
     }
     countDisplay.textContent = count;
     updateGear(count);
-
-    if (options.value === "driving")
-        document.getElementById("option").querySelector('[value="reverse"]').disabled = true;
-    else {
-        document.getElementById("option").querySelector('[value="reverse"]').disabled = false;
-    }
 })
 
 function updateGear(speed) {
@@ -50,6 +52,32 @@ function updateGear(speed) {
 
     if (options.value === "reverse") gear = "reverse";
 
+    //disable reverse and neutral while driving mode
+    if (speed > 0 && options.value === "driving") {
+        options.querySelector('[value="reverse"]').disabled = true;
+        options.querySelector('[value="neutral"]').disabled = true;
+    }
+    else {
+        options.querySelector('[value="reverse"]').disabled = false;
+        options.querySelector('[value="neutral"]').disabled = false;
+    }
+
+    //disable driving and neutral while reverse mode
+    if (speed > 0 && options.value === "reverse") {
+        options.querySelector('[value="driving"]').disabled = true;
+        options.querySelector('[value="neutral"]').disabled = true;
+    }
+    else {
+        options.querySelector('[value="driving"]').disabled = false;
+        options.querySelector('[value="neutral"]').disabled = false;
+    }
+
+    if (speed > 0) {
+        mode2.disabled = true;
+    } else {
+        mode2.disabled = false;
+    }
+
     gearDisplay.textContent = gear;
     return gear;
 }
@@ -63,17 +91,19 @@ let count = 0;
 button.addEventListener("mouseover", () => {
     myfunction();
     if (options.value === "neutral") return;
-    if (options.value === "reverse") {
-        count = count+10;
-    }
     interval = setInterval(() => {
-        if (count < 200) {
-            count++;
-            countDisplay.textContent = `${count}km`;
-            updateGear(count)
-
+        if (options.value === "reverse") {
+            if (count < 10) {
+                count++;
+            }
+        } else {
+            if (count < 200) {
+                count++;
+            }
         }
-    }, 100)
+        countDisplay.textContent = `${count}km`;
+        updateGear(count)
+    }, 1000)
 });
 
 button.addEventListener('mouseout', () => {
@@ -84,9 +114,7 @@ button.addEventListener('mouseout', () => {
 buttonbrk.addEventListener("mouseover", () => {
     brklight.style.backgroundColor = "red";
     interval = setInterval(() => {
-        if (options.value === "neutral") {
-            buttonbrk.removeEventListener("click");
-        }
+        if (options.value === "neutral") return;
         let dec = options.value === "reverse" ? 1 : 5;
         if (count >= dec) {
             count -= dec;
@@ -105,25 +133,14 @@ buttonbrk.addEventListener('mouseout', () => {
 
 //range
 setInterval(() => {
-    const mode1 = document.getElementById("mode1");
-    // console.log(mode1);
-    const mode2 = document.getElementById("mode2");
     const gear = gearDisplay.textContent;
     let range = 0;
     let fuel = 10;
-    if (mode1) {
-        if (gear === "1st") range = 3 * fuel;
-        else if (gear === "2nd") range = 5 * fuel;
-        else if (gear === "3rd") range = 7 * fuel;
-        else if (gear === "4th") range = 13 * fuel;
-        else if (gear === "5th") range = 15 * fuel;
-    } else if (mode2) {
-        if (gear === "1st") range / 2;
-        else if (gear === "2nd") range / 2;
-        else if (gear === "3rd") range / 2;
-        else if (gear === "4th") range / 2;
-        else if (gear === "5th") range / 2;
-    }
+    if (gear === "1st") range = 3 * fuel;
+    else if (gear === "2nd") range = 5 * fuel;
+    else if (gear === "3rd") range = 7 * fuel;
+    else if (gear === "4th") range = 13 * fuel;
+    else if (gear === "5th") range = 15 * fuel;
     rangedisplay.textContent = `range: ${range} km`;
 }, 3000)
 
@@ -218,4 +235,13 @@ airbag.addEventListener('click', () => {
     if (mybtn.style.backgroundColor == "salmon") {
         airbag.style.backgroundColor = airbag.style.backgroundColor == "green" ? "white" : "green";
     }
+})
+
+//mode
+let gear;
+const avg = document.getElementById("avg");
+
+
+mode2.addEventListener("click", () => {
+
 })
