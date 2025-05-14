@@ -13,6 +13,16 @@ const brklight = document.getElementsByClassName("brk")[0];
 let isBlinking = false;
 let intervalId;
 
+//Pressure
+function myfunction() {
+    var x = document.getElementById("psure").value;
+    var y = document.getElementById("psure2").value;
+    console.log(x);
+    if (x == 0 && y == 0) {
+        alert("not working with pressure 0...")
+    }
+}
+
 //drop-down
 options.addEventListener("change", () => {
     if (options.value === "neutral") {
@@ -51,7 +61,11 @@ let interval;
 let count = 0;
 
 button.addEventListener("mouseover", () => {
+    myfunction();
     if (options.value === "neutral") return;
+    if (options.value === "reverse") {
+        count = count+10;
+    }
     interval = setInterval(() => {
         if (count < 200) {
             count++;
@@ -59,7 +73,7 @@ button.addEventListener("mouseover", () => {
             updateGear(count)
 
         }
-    }, 1000)
+    }, 100)
 });
 
 button.addEventListener('mouseout', () => {
@@ -91,14 +105,25 @@ buttonbrk.addEventListener('mouseout', () => {
 
 //range
 setInterval(() => {
+    const mode1 = document.getElementById("mode1");
+    // console.log(mode1);
+    const mode2 = document.getElementById("mode2");
     const gear = gearDisplay.textContent;
     let range = 0;
     let fuel = 10;
-    if (gear === "1st") range = 3 * fuel;
-    else if (gear === "2nd") range = 5 * fuel;
-    else if (gear === "3rd") range = 7 * fuel;
-    else if (gear === "4th") range = 13 * fuel;
-    else if (gear === "5th") range = 15 * fuel;
+    if (mode1) {
+        if (gear === "1st") range = 3 * fuel;
+        else if (gear === "2nd") range = 5 * fuel;
+        else if (gear === "3rd") range = 7 * fuel;
+        else if (gear === "4th") range = 13 * fuel;
+        else if (gear === "5th") range = 15 * fuel;
+    } else if (mode2) {
+        if (gear === "1st") range / 2;
+        else if (gear === "2nd") range / 2;
+        else if (gear === "3rd") range / 2;
+        else if (gear === "4th") range / 2;
+        else if (gear === "5th") range / 2;
+    }
     rangedisplay.textContent = `range: ${range} km`;
 }, 3000)
 
@@ -133,12 +158,12 @@ right_indi_btn.addEventListener("click", function () {
 
 //hazard light
 const light = document.getElementById("hazard");
-light.addEventListener("click",()=>{
-    if (!isBlinking) {  
+light.addEventListener("click", () => {
+    if (!isBlinking) {
         circle.classList.add('blink');
         circle2.classList.add('blink');
         isBlinking = true;
-    }else{
+    } else {
         circle.classList.remove('blink');
         circle2.classList.remove('blink');
         isBlinking = false;
@@ -182,62 +207,15 @@ function btncolor() {
     if (mybtn.style.backgroundColor == "salmon") {
         mybtn.style.backgroundColor = "white";
         airbag.style.backgroundColor = "white";
-    }else {
+    } else {
         mybtn.style.backgroundColor = "salmon";
     }
 }
 
 mybtn.addEventListener('click', btncolor);
 
-airbag.addEventListener('click',()=>{
+airbag.addEventListener('click', () => {
     if (mybtn.style.backgroundColor == "salmon") {
         airbag.style.backgroundColor = airbag.style.backgroundColor == "green" ? "white" : "green";
-    } 
-})
-
-//mode
-const mode = document.getElementById("mode2")
-let avg;
-let mod;
-if (avg = 6) {
-    mod = avg / 2;
-    mode.textContent = `Mode 4/4 :  ${mod}`;
-}
-
-//wheel 
-const wheel = document.getElementById("wheel");
-const psi = document.getElementById("psure");
-const average = document.getElementById("avg");
-
-wheel.addEventListener("click", () => {
-    if (count > 25) {
-        alert("psi exceded...");
-        // avg = average.textContent = 
-    }
-    else if (count < 23) {
-        
-    } else {
-        count++;
-        psi.textContent = `Pressure w-1 & 2 - ${count}`;
     }
 })
-
-const wheel2 = document.getElementById("wheel2");
-const psi2 = document.getElementById("psure2");
-
-let num =0;
-wheel2.addEventListener("click", () => { 
-        if (count >= 27 &&  count<= 33) {
-            avg = average.textContent = num++; }
-        else if (count >=33) {
-            alert("presuure is increases")  
-        } else {
-            count++;
-            psi2.textContent = `Pressure w-1 & 2 - ${count}`; 
-        }
-})
-
-
-// rear-27 to 33 hoi tyare +1 , 33 thi vadhe toh alart aapvanu, 25 thi niche 3 thi avg ghate
-
-// Front mate--> 23 to 27 hoi to +1 karvanu average ma , 27 thi upar hoi toh alart aapvanu  , ane 23 thi niche hoi to 3 thi avg ghate

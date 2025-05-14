@@ -92,34 +92,6 @@ button:hover {
     animation: blink 0.5s infinite;
 }
 
-.tyre{
-    display: flex;
-    gap: 15px;
-    cursor: pointer;
-}
-
-#wheel{
-    border: 1px groove salmon;
-    background-color: salmon;
-    border-radius: 20px;
-    padding: 4px;
-}
-
-#wheel2{
-    border: 1px groove salmon;
-    background-color: salmon;
-    border-radius: 20px;
-    padding: 4px;
-}
-
-#psure{
-    margin-left: 3rem;
-}
-
-#psure2{
-    margin-left: 3rem;
-}
-
 .sitbelt{
     border: 1px solid black;
     padding: 5px;
@@ -148,4 +120,8 @@ button:hover {
     justify-content: center;
     padding: 5px;
     border-radius: 5px;
+}
+
+#psure2{
+    margin-top: 2px;   
 }
