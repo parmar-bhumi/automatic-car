@@ -7,22 +7,53 @@
     <link rel="stylesheet" href="style.css">    
 </head>
 <body>
-    <div class="container"> 
-        <div>
-            <div>
-                
-            </div>
-            <input type="number" placeholder="battery volts..." id="battery">
-        </div>
+    <div class="container">
         <div class="main">
             <p>Speed: <span id="clickCount">0km</span></p>
             <p>Gair: <span id="gair">0</span></p>
             <p id="range">Range: 0 km</p>
             <p id="fuel">Fuel : 10L</p>
         </div>
+        <div>
+            
+        </div>
+        <div id="rpm">Rpm</div>
+
+     <!-- <input id="rpmMaxDisplay" class="rpm-max  " type="text" placeholder="rpm"> -->
+<div id="rpmMaxDisplay" class="rpm-max  "></div>
+
+<label for="oilInput">Enter Oil (max 10L):</label>
+<input type="number" id="oilInput" min="0" max="10" step="0.1" />
+
+<label for="tempInput">Enter Temperature (°C):</label>
+<input type="number" id="tempInput" min="10" max="70" step="1" oninput="checkTemperature()" />
+
+
+<label for="rediatorInput">Enter Radiator Water (L):</label>
+<input type="number" id="rediatorInput" min="0" max="10" step="0.1" oninput="checkRadiatorWater()" />
+
+
+
+
+
+<div id="Container">
+  <p id="oilLevelDisplay">Oil Level: 0L</p>
+  <p id="temperatureDisplay">Temperature: 25°C</p>
+   <p id="temperatureAlert"></p> 
+   <p id="rediatorDisplay">Radiator: 0L</p>
+</div>
+
+
+
+
+<div id="average">Average: - km/l</div>
+
+
+
+
         <select id="option">
             <option value="driving">Driving</option>
-            <option value="neutral" id="new">Neutral</option>
+            <option value="neutral">Neutral</option>
             <option value="reverse">Reverse</option>
         </select>
         <div>
@@ -35,32 +66,58 @@
             <span class="innerclass"></span>
             <span class="innerclass"></span>
             <span class="brk"></span>
-            <span id="avg">Average - </span>
         </div>
         <div>
             <button id="lindicator">Left</button>
             <button id="rindicator">Right</button>
-            <button id="hazard">Hazard</button>
         </div>
         <div>
             <button id="sbtnleft">Stering left</button>
             <button id="sbtnright">Stering right</button>
         </div>
-        <div class="pressure">
-            <label for="">Pressure w-1,2 :</label>
-            <input type="number" id="psure" >
-            <label for="">Pressure w-3,4 :</label>
-            <input type="number" id="psure2">
+        <div class="tyre">
+            <span id="wheel">Wheel 1 & 2</span>
+            <span id="wheel2">Wheel 3 & 4</span>
         </div>
+        <!-- <div>
+            <button id="psure">Pressure w-1 & 2 - </button>
+            <button id="psure2">Pressure w-3 & 4 - </button>
+        </div> -->
+        <!-- <div class="pressure-inputs">
+  <label for="frontPressure">Front Wheels Pressure:</label>
+  <input type="number" id="frontPressure" placeholder="Enter PSI" />
+  <span id="frontDisplay"></span>
+  <br />
+  <label for="rearPressure">Rear Wheels Pressure:</label>
+  <input type="number" id="rearPressure" placeholder="Enter PSI" />
+  <span id="rearDisplay"></span>
+</div> -->
+
+<!--  -->
+<div>
+  <label for="frontPressure">Front Pressure:</label>
+  <input type="number" id="frontPressure" placeholder="Enter front PSI">
+  <span id="frontPressureDisplay" style="margin-left: 10px; font-weight: bold;"></span>
+</div>
+
+<div>
+  <label for="rearPressure">Rear Pressure:</label>
+  <input type="number" id="rearPressure" placeholder="Enter rear PSI">
+  <span id="rearPressureDisplay" style="margin-left: 10px; font-weight: bold;"></span>
+</div>
+
+<!-- Existing average display -->
+<div id="average">Average: --</div>
+
+<!--  -->
+
         <div>
             <span class="sitbelt">Seat belt</span>
             <span class="airbag">Airbag</span>
         </div>
         <div>
-            <select id="mode">
-                <option value="mode2x2" id="mode1">Mode : 2 x 2</option>
-                <option value="mode4x4" id="mode2">Mode : 4 x 4</option>
-            </select>
+            <p id="mode1">Mode 2/4 : 50</p>
+            <p id="mode2">Mode 4/4</p>
         </div>
     </div>
     <script src="script.js"></script>
