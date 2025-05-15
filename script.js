@@ -63,7 +63,7 @@ function updateGear(speed) {
     }
     else {
         options.querySelector('[value="reverse"]').disabled = false;
-        // options.querySelector('[value="neutral"]').disabled = false;
+        options.querySelector('[value="neutral"]').disabled = false;
     }
 
     //disable driving and neutral while reverse mode
@@ -251,3 +251,14 @@ airbag.addEventListener('click', () => {
         airbag.style.backgroundColor = airbag.style.backgroundColor == "green" ? "white" : "green";
     }
 })
+
+//avg/2 = range when in 4x4 mode
+const avgdisplay = document.getElementById("avg");
+let num = 0;
+setInterval(()=>{
+    // num+=5;
+    if (mode.value === "mode4x4") {
+        rangedisplay.textContent = `range: ${num/2} km`;
+    }
+    avgdisplay.textContent = `Average - ${num}`;
+},1000)
