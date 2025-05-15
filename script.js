@@ -9,7 +9,10 @@ const right_indi_btn = document.getElementById("rindicator");
 const circle = document.getElementsByClassName("innerclass")[0];
 const circle2 = document.getElementsByClassName("innerclass")[1];
 const brklight = document.getElementsByClassName("brk")[0];
-const mode2 = document.getElementById("mode");
+const mode = document.getElementById("mode");
+const mode1 = document.getElementById("mode1");
+const mode2 = document.getElementById("mode2");
+const neutral = document.getElementById("new");
 
 let isBlinking = false;
 let intervalId;
@@ -26,8 +29,9 @@ function myfunction() {
 
 function battery() {
     const battery = document.getElementById("battery").value;
-    if (battery >= 24) {
-        
+    // console.log(battery);    
+    if (battery <= 24) {
+        alert("battery is low..")
     }
 }
 
@@ -55,11 +59,11 @@ function updateGear(speed) {
     //disable reverse and neutral while driving mode
     if (speed > 0 && options.value === "driving") {
         options.querySelector('[value="reverse"]').disabled = true;
-        options.querySelector('[value="neutral"]').disabled = true;
+        neutral.disabled = true;
     }
     else {
         options.querySelector('[value="reverse"]').disabled = false;
-        options.querySelector('[value="neutral"]').disabled = false;
+        // options.querySelector('[value="neutral"]').disabled = false;
     }
 
     //disable driving and neutral while reverse mode
@@ -71,11 +75,21 @@ function updateGear(speed) {
         options.querySelector('[value="driving"]').disabled = false;
         options.querySelector('[value="neutral"]').disabled = false;
     }
-
-    if (speed > 0) {
-        mode2.disabled = true;
-    } else {
-        mode2.disabled = false;
+    //disable mode 
+    if (mode.value === "mode2x2") {
+        if (speed > 0) {
+            mode2.disabled = true;
+        } else {
+            mode2.disabled = false;
+        }
+    }else{
+        if (mode.value === "mode4x4") {
+            if (speed > 0) {
+                mode1.disabled = true;
+            } else {
+                mode1.disabled = false;
+            }
+        }
     }
 
     gearDisplay.textContent = gear;
@@ -90,6 +104,7 @@ let count = 0;
 
 button.addEventListener("mouseover", () => {
     myfunction();
+    battery();
     if (options.value === "neutral") return;
     interval = setInterval(() => {
         if (options.value === "reverse") {
@@ -235,13 +250,4 @@ airbag.addEventListener('click', () => {
     if (mybtn.style.backgroundColor == "salmon") {
         airbag.style.backgroundColor = airbag.style.backgroundColor == "green" ? "white" : "green";
     }
-})
-
-//mode
-let gear;
-const avg = document.getElementById("avg");
-
-
-mode2.addEventListener("click", () => {
-
 })
