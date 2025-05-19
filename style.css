@@ -4,14 +4,16 @@ body {
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    /* align-items: center; */
+    overflow-y: auto;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
 .main{
     display: flex;
     flex-direction: row;
-    gap: 2px;
+    gap: 10px;
     /* flex-wrap: wrap; */
 }
 
@@ -24,7 +26,8 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    width: 300px;
+    width: 500px;
+     gap: 20px;
 }
 
 p {
@@ -135,3 +138,98 @@ button:hover {
     border-radius: 5px;
     margin: 0 10px;
 }          
+#rpm{
+     padding: 10px;
+    background: #ccc;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+#average{
+    display: flex;
+     padding: 10px;
+    background: #ccc;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    
+}
+/* .blink-red {
+  background-color: rgb(177, 41, 41) !important;
+  animation: blink 1s steps(2, start) infinite;
+  color: white;
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+} */
+.blink {
+  animation: blink-animation 1s steps(2, start) infinite;
+  color: red;
+  font-weight: bold;
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+.rpm-max{
+    /* border: 2px solid gray; */
+    /* background-color: #ccc; */
+    width: 85px;
+    height: 25px;
+    /* border-radius: 8px; */
+}
+#Container {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  /* margin-top: 10px; */
+  width: 300px;
+}
+
+/* oil */
+.blink-red {
+  animation: blink-red 1s infinite;
+  color: red;
+  font-weight: bold;
+  justify-content: space-between;
+}
+
+@keyframes blink-red {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+#oilLevelDisplay{
+    align-items: start;
+    justify-content: left;
+}
+
+/* pressure */
+.pressure-inputs {
+  margin-top: 10px;
+  
+}
+
+.pressure-inputs input {
+  margin-left: 10px;
+  margin-right: 5px;
+  padding: 4px;
+  
+}
+
+.distance-section {
+    font-size: 1.2rem;
+    margin: 10px;
+    background-color: #ccc;
+    border-radius: 8px;
+    height: 35px;
+    border: 2px solid gray;
+}
+
+

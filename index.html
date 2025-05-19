@@ -10,14 +10,57 @@
     <div class="container">
         <div class="main">
             <p>Speed: <span id="clickCount">0km</span></p>
-            <p>Gair: <span id="gair">0</span></p>
+            <p>Gear: <span id="gair">0</span></p>
             <p id="range">Range: 0 km</p>
             <p id="fuel">Fuel : 10L</p>
         </div>
-        <div>
-            <p>RPM</p>
-        </div>
-        <!-- <div id="rpm">Rpm</div> -->
+        
+        <div class="distance-section">
+    <label>Total Distance:</label>
+    <span id="distanceDisplay">0.00 km</span>
+</div>
+
+<div id="lastDistanceDisplay">Last Distance Covered: 0 km</div>
+
+
+        <div id="rpm">Rpm</div>
+
+        
+
+     <!-- <input id="rpmMaxDisplay" class="rpm-max  " type="text" placeholder="rpm"> -->
+<div id="rpmMaxDisplay" class="rpm-max  "></div>
+
+<label for="oilInput">Enter Oil (max 10L):</label>
+<input type="number" id="oilInput" min="0" max="10" step="0.1" />
+
+<label for="tempInput">Enter Temperature (°C):</label>
+<input type="number" id="tempInput" min="10" max="70" step="1" oninput="checkTemperature()" />
+
+
+<label for="rediatorInput">Enter Radiator Water (L):</label>
+<input type="number" id="rediatorInput" min="0" max="10" step="0.1" oninput="checkRadiatorWater()" />
+
+
+
+
+
+
+
+<div id="Container">
+  <p id="oilLevelDisplay">Oil Level: 0L</p>
+  <p id="temperatureDisplay">Temperature: 25°C</p>
+   <p id="temperatureAlert"></p> 
+   <p id="rediatorDisplay">Radiator: 0L</p>
+</div>
+
+
+
+
+<div id="average">Average: - km/l</div>
+
+
+
+
         <select id="option">
             <option value="driving">Driving</option>
             <option value="neutral">Neutral</option>
@@ -29,6 +72,8 @@
             <audio src="music.mp3" id="myAudio"></audio>
             <button id="playButton">Horn</button>
         </div>
+
+
         <div class="circle">
             <span class="innerclass"></span>
             <span class="innerclass"></span>
@@ -46,10 +91,39 @@
             <span id="wheel">Wheel 1 & 2</span>
             <span id="wheel2">Wheel 3 & 4</span>
         </div>
-        <div>
+        <!-- <div>
             <button id="psure">Pressure w-1 & 2 - </button>
             <button id="psure2">Pressure w-3 & 4 - </button>
-        </div>
+        </div> -->
+        <!-- <div class="pressure-inputs">
+  <label for="frontPressure">Front Wheels Pressure:</label>
+  <input type="number" id="frontPressure" placeholder="Enter PSI" />
+  <span id="frontDisplay"></span>
+  <br />
+  <label for="rearPressure">Rear Wheels Pressure:</label>
+  <input type="number" id="rearPressure" placeholder="Enter PSI" />
+  <span id="rearDisplay"></span>
+</div> -->
+
+<!--  -->
+
+  <label>fornt wheel (PSI):</label>
+  <input type="number" id="frontPressureInput" placeholder="23-27">
+  <span id="frontPressureDisplay">-- PSI</span>
+
+  <label>back wheel(PSI):</label>
+  <input type="number" id="rearPressureInput" placeholder="27-33">
+  <span id="rearPressureDisplay">-- PSI</span>
+
+  <div class="result">
+    current average: <span id="averageDisplay">-- km/l</span>
+  </div>
+
+<!-- Existing average display -->
+<!-- <div id="average">Average: --</div> -->
+
+<!--  -->
+
         <div>
             <span class="sitbelt">Seat belt</span>
             <span class="airbag">Airbag</span>
